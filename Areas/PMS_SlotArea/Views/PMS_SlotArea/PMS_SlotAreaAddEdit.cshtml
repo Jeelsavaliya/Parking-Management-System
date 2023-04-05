@@ -1,0 +1,61 @@
+﻿@{
+    ViewData["Title"] = "SlotArea Add/Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@model ParkingSystem.Areas.PMS_SlotArea.Models.PMS_SlotAreaModel
+
+<div class="row">
+    <div class="col-md-12">
+        <h3>SlotArea Add List</h3>
+        <h3>@TempData["SlotAreaInsertMsg"]</h3>
+        <form method="post" asp-area="PMS_SlotArea" asp-controller="PMS_SlotArea" asp-action="Save">
+            @Html.HiddenFor(x=>x.SlotAreaID)
+            <div class="form-group">
+                <label>SlotArea Category</label>
+                <select class="form-control" asp-for="VehicleCategoryID" asp-items="@(new SelectList(ViewBag.VehicleCategoryList,"VehicleCategoryID","VehicleCategory").ToList())">
+                    <option vlaue="">Select Country</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Building Name</label>
+                <input type="text" class="form-control" asp-for="BuildingName" placeholder="Enter Building Name" />
+                <span asp-validation-for="BuildingName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label>Floor</label>
+                <input type="text" class="form-control" asp-for="Floor" placeholder="Enter Floor" />
+                <span asp-validation-for="Floor" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label>SlotArea Name</label>
+                <input type="text" class="form-control" asp-for="SlotAreaName" placeholder="Enter SlotArea Name" />
+                <span asp-validation-for="SlotAreaName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label>SlotArea Code</label>
+                <input type="text" class="form-control" asp-for="SlotAreaCode" placeholder="Enter SlotArea Code" />
+                <span asp-validation-for="SlotAreaCode" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label>SlotArea Size</label>
+                <input type="text" class="form-control" asp-for="SlotAreaSize" placeholder="Enter Slot Size" />
+                <span asp-validation-for="SlotAreaSize" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label>Status</label>
+                <input type="text" class="form-control" asp-for="Status" placeholder="Enter Mobile Number" />
+                <span asp-validation-for="Status" class="text-danger"></span>
+            </div>
+            <hr />
+            <div class="row">
+                <input type="submit" class="btn btn-success" />
+                <a class="btn btn-danger" asp-area="PMS_SlotArea" asp-controller="PMS_SlotArea" asp-action="Index">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+

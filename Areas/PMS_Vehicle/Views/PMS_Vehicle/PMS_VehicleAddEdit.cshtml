@@ -1,0 +1,56 @@
+﻿@{
+    ViewData["Title"] = "Vehicle Add/Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@model ParkingSystem.Areas.PMS_Vehicle.Models.PMS_VehicleModel
+
+<div class="row">
+    <div class="col-md-12">
+        <h3>Vehicle Add List</h3>
+        <h3>@TempData["VehicleInsertMsg"]</h3>
+        <form method="post" asp-area="PMS_Vehicle" asp-controller="PMS_Vehicle" asp-action="Save">
+            @Html.HiddenFor(x=>x.VehicleID)
+            <div class="form-group">
+                <label>Vehicle Category</label>
+                <select class="form-control" asp-for="VehicleCategoryID" asp-items="@(new SelectList(ViewBag.VehicleCategoryList,"VehicleCategoryID","VehicleCategory").ToList())">
+                    <option vlaue="">Select Category</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Vehicle Company</label>
+                <input type="text" class="form-control" asp-for="VehicleCompany" placeholder="Enter Vehicle Company" />
+                <span asp-validation-for="VehicleCompany" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label>Vehicle Model</label>
+                <input type="text" class="form-control" asp-for="VehicleModel" placeholder="Enter Vehicle Model" />
+                <span asp-validation-for="VehicleModel" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label>Vehicle Number</label>
+                <input type="text" class="form-control" asp-for="VehicleNumber" placeholder="Enter Vehicle Number" />
+                <span asp-validation-for="VehicleNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label>Owner Name</label>
+                <input type="text" class="form-control" asp-for="OwnerName" placeholder="Enter Owner Name" />
+                <span asp-validation-for="OwnerName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label>Owner Mobile Number</label>
+                <input type="text" class="form-control" asp-for="OwnerMobileNo" placeholder="Enter Mobile Number" />
+                <span asp-validation-for="OwnerMobileNo" class="text-danger"></span>
+            </div>
+            <hr />
+            <div class="row">
+                <input type="submit" class="btn btn-success" />
+                <a class="btn btn-danger" asp-area="PMS_Vehicle" asp-controller="PMS_Vehicle" asp-action="Index">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
