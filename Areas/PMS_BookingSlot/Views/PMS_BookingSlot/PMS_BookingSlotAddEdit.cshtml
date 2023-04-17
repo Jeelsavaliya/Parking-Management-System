@@ -1,5 +1,121 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
+﻿    @{
+    ViewData["Title"] = "BookingSlot Add/Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@model ParkingSystem.Areas.PMS_BookingSlot.Models.PMS_BookingSlotModel;
+<div class="row">
+    <div class="col-md-12">
+        <h3>BookingSlot Add List</h3>
+        <h3>@TempData["BookingSlotInsertMsg"]</h3>
+        <form method="get" asp-area="PMS_BookingSlot" asp-controller="PMS_BookingSlot" asp-action="Save" enctype="multipart/form-data">
+            @Html.HiddenFor(x=>x.SlotID)
+            <div class="form-group">
+                <label>Vehicle Category</label>
+                <select class="form-control" asp-for="VehicleCategoryID" asp-items="@(new SelectList(ViewBag.VehicleCategoryList,"VehicleCategoryID","VehicleCategory").ToList())" onchange="VehicleCategoryChange();">
+                    <option vlaue="">Select Category</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Vehicle Number</label>
+                <select class="form-control" asp-for="VehicleID" asp-items="@(new SelectList(ViewBag.VehicleList,"VehicleID","VehicleNumber").ToList())">
+                    <option vlaue="">Select Vehicle Number</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Building Name</label>
+                <select class="form-control" asp-for="SlotAreaID" asp-items="@(new SelectList(ViewBag.SlotAreaList,"SlotAreaID","BuildingName").ToList())">
+                    <option vlaue="">Select Building</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Status</label>
+                <input type="text" class="form-control" asp-for="Status" placeholder="Enter Status" />
+            </div>
+            <div class="form-group">
+                <label>Booking Date</label>
+                <input type="date" class="form-control" asp-for="BookingDate" placeholder="Enter Booking Date" />
+            </div>
+            <div class="form-group">
+                <label>Entry Time</label>
+                <input type="time" class="form-control" asp-for="EntryTime" placeholder="Enter Entry Time" />
+            </div>
+            <div class="form-group">
+                <label>Exit Time</label>
+                <input type="time" class="form-control" asp-for="ExitTime" placeholder="Enter Exit Time" />
+            </div>
+            <div class="form-group">
+                <label>Remark</label>
+                <input type="text" class="form-control" asp-for="Remark" placeholder="Enter Remark" />
+            </div>
+            <div class="form-group">
+                <label>Amount</label>
+                <input type="text" class="form-control" asp-for="Amount" placeholder="Enter Amount" />
+            </div>
+            <hr />
+            <div class="row">
+                <input type="submit" class="btn btn-success" value="Submit" />
+                <a class="btn btn-danger" onclick="" asp-area="PMS_BookingSlot" asp-controller="PMS_BookingSlot" asp-action="Index">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    function VehicleCategoryChange() {
+        var VehicleCategoryID = $("#VehicleCategoryID").val();
+
+        if (VehicleCategoryID !== "") {
+            $("#VehicleID").empty();
+            $("#VehicleID").append($("<option></option>").val("").html("Select Vehicle"));
+
+            $.ajax(
+                {
+                    type: "POST",
+                    contentType: "application/json; charset=utf-8",
+                    url: "@Url.Action("DropDownByVehicleCategory","PMS_BookingSlot")" + "?&VehicleCategoryID=" + VehicleCategoryID,
+                    data: {},
+                    dataType: "json",
+                    success: function (Result) {
+                        $.each(Result,
+                            function (key, value) {
+                                $("#VehicleID").append($("<option></option>").val(value.vehicleID).html(value.vehicleNumber));
+                            });
+                    },
+                    
+                });
+        } else {
+            $("#VehicleID").empty();
+            $("#VehicleID").append($("<option></option>").val("").html("Select VehicleID"));
+
+        }
+
+        if (VehicleCategoryID !== "") {
+            $("#SlotAreaID").empty();
+            $("#SlotAreaID").append($("<option></option>").val("").html("Select Building"));
+            console.log();
+            $.ajax(
+                {
+                    type: "POST",
+                    contentType: "application/json; charset=utf-8",
+                    url: "@Url.Action("DropDownByVehicleCategorySlot","PMS_BookingSlot")" + "?&VehicleCategoryID=" + VehicleCategoryID,
+                    data: {},
+                    dataType: "json",
+                    success: function (Result) {
+                        $.each(Result,
+                            function (key, value) {
+                                $("#SlotAreaID").append($("<option></option>").val(value.slotAreaID).html(value.buildingName)); //aaya SlotAreaID ma ajax ma first latter small aave SlotAreaID==>slotAreaID and BuildingName ==> buildingName
+                            });
+                    },
+                    error: function (r) {
+                        alert("error while loading combobox.");
+                    }
+                });
+        } else {
+            $("#SlotAreaID").empty();
+            $("#SlotAreaID").append($("<option></option>").val("").html("Select SlotAreaID"));
+
+        }
+    }
+</script>
+
+

@@ -29,13 +29,13 @@
 <br />*@
 
 <div class="row">
-    <div class="col-lg-8">
+    <div class="col-lg-7">
         <h3>SlotArea List</h3>
     </div>
     <div id="sample_1_filter" class="dataTables_filter col-md-2">
         <input type="text" placeholder="Search SlotArea" id="sample_1" />
     </div>
-    <div class="col-lg-2">
+    <div class="col-lg-3">
         <form method="post" asp-area="PMS_SlotArea" asp-controller="PMS_SlotArea" asp-action="Add">
             <button class="btn btn-primary">Add SlotArea</button>
         </form>
@@ -43,10 +43,10 @@
 </div>
 <hr />
 
-<table class="table table-striped table-bordered table-header-fixed dataTable table-responsive table-sm" id="sample_1">
+<div class="table-responsive">
+<table class="table" id="sample_1">
     <thead>
         <tr>
-            <th>SlotArea ID</th>
             <th>Vehicle Category</th>
             <th>Building Name</th>
             <th>Floor</th>
@@ -64,7 +64,6 @@
         @foreach (DataRow dr in Model.Rows)
         {
             <tr>
-                <td>@dr["SlotAreaID"]</td>
                 <td>@dr["VehicleCategory"]</td>
                 <td>@dr["BuildingName"]</td>
                 <td>@dr["Floor"]</td>
@@ -90,6 +89,7 @@
         }
     </tbody>
 </table>
+</div>
 
 @section Scripts{
     <script>

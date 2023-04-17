@@ -5,6 +5,7 @@ using System.Data;
 using ParkingSystem.Areas.PMS_VehicleCategory.Models;
 using ParkingSystem.Areas.PMS_Vehicle.Models;
 using ParkingSystem.Areas.PMS_SlotArea.Models;
+using ParkingSystem.Areas.PMS_BookingSlot.Models;
 
 namespace ParkingSystem.DAL
 {
@@ -455,5 +456,164 @@ namespace ParkingSystem.DAL
         }
 
         #endregion
+
+        #region PR_PMS_BookingSlot_SelectAll
+        public DataTable PR_PMS_BookingSlot_SelectAll()
+        {
+            try
+            {
+                SqlDatabase sqlDB = new SqlDatabase(myConnectionString);
+                DbCommand dbCMD = sqlDB.GetStoredProcCommand("PR_PMS_BookingSlot_SelectAll");
+                sqlDB.AddInParameter(dbCMD, "UserID", SqlDbType.Int, CV.UserID());
+
+                DataTable dt = new DataTable();
+                using (IDataReader dr = sqlDB.ExecuteReader(dbCMD))
+                {
+                    dt.Load(dr);
+                }
+                return dt;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
+        #endregion
+
+        #region PR_PMS_BookingSlot_DeleteByPK
+
+        public DataTable PR_PMS_BookingSlot_DeleteByPK(int SlotID)
+        {
+            try
+            {
+                SqlDatabase sqlDB = new SqlDatabase(myConnectionString);
+                DbCommand dbCMD = sqlDB.GetStoredProcCommand("PR_PMS_BookingSlot_DeleteByPK");
+                sqlDB.AddInParameter(dbCMD, "SlotID", SqlDbType.Int, SlotID);
+                sqlDB.AddInParameter(dbCMD, "UserID", SqlDbType.Int, CV.UserID());
+
+                DataTable dt = new DataTable();
+                using (IDataReader dr = sqlDB.ExecuteReader(dbCMD))
+                {
+                    dt.Load(dr);
+                }
+                return dt;
+            }
+            catch (Exception e)
+            {
+
+                return null;
+
+            }
+        }
+
+        #endregion
+
+        #region PR_PMS_BookingSlot_Insert
+
+        public DataTable PR_PMS_BookingSlot_Insert(PMS_BookingSlotModel modelPMS_BookingSlot)
+        {
+            try
+            {
+                SqlDatabase sqlDB = new SqlDatabase(myConnectionString);
+                DbCommand dbCMD = sqlDB.GetStoredProcCommand("PR_PMS_BookingSlot_Insert");
+
+                sqlDB.AddInParameter(dbCMD, "UserID", SqlDbType.Int, CV.UserID());
+                sqlDB.AddInParameter(dbCMD, "SlotAreaID", SqlDbType.NVarChar, modelPMS_BookingSlot.SlotAreaID);
+                sqlDB.AddInParameter(dbCMD, "VehicleID", SqlDbType.NVarChar, modelPMS_BookingSlot.VehicleID);
+                sqlDB.AddInParameter(dbCMD, "VehicleCategoryID", SqlDbType.NVarChar, modelPMS_BookingSlot.VehicleCategoryID);
+                sqlDB.AddInParameter(dbCMD, "Status", SqlDbType.NVarChar, modelPMS_BookingSlot.Status);
+                sqlDB.AddInParameter(dbCMD, "BookingDate", SqlDbType.Date, modelPMS_BookingSlot.BookingDate);
+                sqlDB.AddInParameter(dbCMD, "EntryTime", SqlDbType.DateTime, modelPMS_BookingSlot.EntryTime);
+                sqlDB.AddInParameter(dbCMD, "ExitTime", SqlDbType.DateTime, modelPMS_BookingSlot.ExitTime);
+                sqlDB.AddInParameter(dbCMD, "Remark", SqlDbType.NVarChar, modelPMS_BookingSlot.Remark);
+                sqlDB.AddInParameter(dbCMD, "Amount", SqlDbType.Decimal, modelPMS_BookingSlot.Amount);
+                sqlDB.AddInParameter(dbCMD, "CreationDate", SqlDbType.Date, DBNull.Value);
+                sqlDB.AddInParameter(dbCMD, "ModificationDate", SqlDbType.Date, DBNull.Value);
+
+
+                DataTable dt = new DataTable();
+
+                using (IDataReader dr = sqlDB.ExecuteReader(dbCMD))
+                {
+                    dt.Load(dr);
+
+                }
+                return dt;
+            }
+            catch (Exception e)
+            {
+
+                return null;
+
+            }
+        }
+        #endregion
+
+        #region PR_PMS_BookingSlot_UpdateByPK
+        public DataTable PR_PMS_BookingSlot_UpdateByPK(PMS_BookingSlotModel modelPMS_BookingSlot)
+        {
+            try
+            {
+                SqlDatabase sqlDB = new SqlDatabase(myConnectionString);
+                DbCommand dbCMD = sqlDB.GetStoredProcCommand("PR_PMS_BookingSlot_UpdateByPK");
+
+                sqlDB.AddInParameter(dbCMD, "SlotID", SqlDbType.NVarChar, modelPMS_BookingSlot.SlotID);
+                sqlDB.AddInParameter(dbCMD, "UserID", SqlDbType.Int, CV.UserID());
+                sqlDB.AddInParameter(dbCMD, "SlotAreaID", SqlDbType.NVarChar, modelPMS_BookingSlot.SlotAreaID);
+                sqlDB.AddInParameter(dbCMD, "VehicleID", SqlDbType.NVarChar, modelPMS_BookingSlot.VehicleID);
+                sqlDB.AddInParameter(dbCMD, "VehicleCategoryID", SqlDbType.NVarChar, modelPMS_BookingSlot.VehicleCategoryID);
+                sqlDB.AddInParameter(dbCMD, "Status", SqlDbType.NVarChar, modelPMS_BookingSlot.Status);
+                sqlDB.AddInParameter(dbCMD, "BookingDate", SqlDbType.Date, modelPMS_BookingSlot.BookingDate);
+                sqlDB.AddInParameter(dbCMD, "EntryTime", SqlDbType.DateTime, modelPMS_BookingSlot.EntryTime);
+                sqlDB.AddInParameter(dbCMD, "ExitTime", SqlDbType.DateTime, modelPMS_BookingSlot.ExitTime);
+                sqlDB.AddInParameter(dbCMD, "Remark", SqlDbType.NVarChar, modelPMS_BookingSlot.Remark);
+                sqlDB.AddInParameter(dbCMD, "Amount", SqlDbType.Decimal, modelPMS_BookingSlot.Amount);
+                sqlDB.AddInParameter(dbCMD, "Status", SqlDbType.NVarChar, modelPMS_BookingSlot.Status);
+                sqlDB.AddInParameter(dbCMD, "ModificationDate", SqlDbType.Date, DBNull.Value);
+
+
+                DataTable dt = new DataTable();
+
+                using (IDataReader dr = sqlDB.ExecuteReader(dbCMD))
+                {
+                    dt.Load(dr);
+
+                }
+                return dt;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+        #endregion
+
+        #region PR_PMS_BookingSlot_SelectByPK
+        public DataTable PR_PMS_BookingSlot_SelectByPK(int? SlotID)
+        {
+            try
+            {
+                SqlDatabase sqlDB = new SqlDatabase(myConnectionString);
+                DbCommand dbCMD = sqlDB.GetStoredProcCommand("PR_PMS_BookingSlot_SelectByPK");
+                sqlDB.AddInParameter(dbCMD, "SlotID", SqlDbType.Int, SlotID);
+                sqlDB.AddInParameter(dbCMD, "UserID", SqlDbType.Int, CV.UserID());
+
+                DataTable dt = new DataTable();
+                using (IDataReader dr = sqlDB.ExecuteReader(dbCMD))
+                {
+                    dt.Load(dr);
+                }
+                return dt;
+            }
+            catch (Exception e)
+            {
+
+                return null;
+
+            }
+        }
+        #endregion
+
     }
 }
