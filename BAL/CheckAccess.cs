@@ -7,7 +7,7 @@ namespace ParkingSystem.BAL
     {
         public void OnAuthorization(AuthorizationFilterContext filterContext)
         {
-            var rd = filterContext.RouteData;
+                var rd = filterContext.RouteData;
             string currentAction = rd.Values["action"].ToString();
             string currentController = rd.Values["controller"].ToString();
             //string currentArea = rd.DataTokens["area"].ToString();

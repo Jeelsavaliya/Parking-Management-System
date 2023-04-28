@@ -2,7 +2,7 @@
 {
     public class PMS_BookingSlotModel
     {
-        public int? SlotID { get; set; }
+        public int SlotID { get; set; }
         public int? SlotAreaID { get; set; }
         public int? VehicleID { get; set; }
         public int? VehicleCategoryID { get; set; }

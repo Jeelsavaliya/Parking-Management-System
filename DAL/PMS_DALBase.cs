@@ -165,7 +165,7 @@ namespace ParkingSystem.DAL
                 {
                     dt.Load(dr);
                 }
-               return dt;
+                return dt;
             }
             catch (Exception e)
             {
@@ -569,20 +569,18 @@ namespace ParkingSystem.DAL
                 sqlDB.AddInParameter(dbCMD, "ExitTime", SqlDbType.DateTime, modelPMS_BookingSlot.ExitTime);
                 sqlDB.AddInParameter(dbCMD, "Remark", SqlDbType.NVarChar, modelPMS_BookingSlot.Remark);
                 sqlDB.AddInParameter(dbCMD, "Amount", SqlDbType.Decimal, modelPMS_BookingSlot.Amount);
-                sqlDB.AddInParameter(dbCMD, "Status", SqlDbType.NVarChar, modelPMS_BookingSlot.Status);
                 sqlDB.AddInParameter(dbCMD, "ModificationDate", SqlDbType.Date, DBNull.Value);
-
+                sqlDB.ExecuteNonQuery(dbCMD);
 
                 DataTable dt = new DataTable();
 
                 using (IDataReader dr = sqlDB.ExecuteReader(dbCMD))
                 {
                     dt.Load(dr);
-
                 }
                 return dt;
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 return null;
             }
@@ -595,16 +593,16 @@ namespace ParkingSystem.DAL
             try
             {
                 SqlDatabase sqlDB = new SqlDatabase(myConnectionString);
-                DbCommand dbCMD = sqlDB.GetStoredProcCommand("PR_PMS_BookingSlot_SelectByPK");
-                sqlDB.AddInParameter(dbCMD, "SlotID", SqlDbType.Int, SlotID);
-                sqlDB.AddInParameter(dbCMD, "UserID", SqlDbType.Int, CV.UserID());
+            DbCommand dbCMD = sqlDB.GetStoredProcCommand("PR_PMS_BookingSlot_SelectByPK");
+            sqlDB.AddInParameter(dbCMD, "SlotID", SqlDbType.Int, SlotID);
+            sqlDB.AddInParameter(dbCMD, "UserID", SqlDbType.Int, CV.UserID());
 
-                DataTable dt = new DataTable();
-                using (IDataReader dr = sqlDB.ExecuteReader(dbCMD))
-                {
-                    dt.Load(dr);
-                }
-                return dt;
+            DataTable dt = new DataTable();
+            using (IDataReader dr = sqlDB.ExecuteReader(dbCMD))
+            {
+                dt.Load(dr);
+            }
+            return dt;
             }
             catch (Exception e)
             {

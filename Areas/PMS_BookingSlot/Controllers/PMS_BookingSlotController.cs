@@ -43,19 +43,18 @@ namespace ParkingSystem.Areas.PMS_BookingSlot.Controllers
         #endregion
 
         #region Save
-
         [HttpPost]
         public IActionResult Save(PMS_BookingSlotModel modelPMS_BookingSlot)
         {
             PMS_DAL dalPMS = new PMS_DAL();
 
-            if (modelPMS_BookingSlot.SlotID == null)
+            if (modelPMS_BookingSlot.SlotID == 0)
             {
-                DataTable dtBookingSlot = dalPMS.PR_PMS_BookingSlot_Insert(modelPMS_BookingSlot);
+                 dalPMS.PR_PMS_BookingSlot_Insert(modelPMS_BookingSlot);
             }
             else
             {
-                DataTable dtBookingSlot = dalPMS.PR_PMS_BookingSlot_UpdateByPK(modelPMS_BookingSlot);
+               dalPMS.PR_PMS_BookingSlot_UpdateByPK(modelPMS_BookingSlot);
             }
 
             return RedirectToAction("Index");
@@ -106,12 +105,12 @@ namespace ParkingSystem.Areas.PMS_BookingSlot.Controllers
             #region SelectByPK
             if (SlotID != null)
             {
-                PMS_DAL dalLOC = new PMS_DAL();
-                DataTable dtBookingSlot = dalLOC.PR_PMS_BookingSlot_SelectByPK(SlotID);
+                PMS_DAL dalPMS = new PMS_DAL();
+                DataTable dtBookingSlot = dalPMS.PR_PMS_BookingSlot_SelectByPK(SlotID);
 
                 PMS_BookingSlotModel modelPMS_BookingSlot = new PMS_BookingSlotModel();
 
-                foreach (DataRow dr in dtBookingSlot.Rows)
+                foreach (DataRow dr in  dtBookingSlot.Rows)
                 {
                     modelPMS_BookingSlot.UserID = Convert.ToInt32(dr["UserID"]);
                     modelPMS_BookingSlot.SlotID = Convert.ToInt32(dr["SlotID"]);
@@ -184,6 +183,7 @@ namespace ParkingSystem.Areas.PMS_BookingSlot.Controllers
 
             }
             #endregion
+
             return View("PMS_BookingSlotAddEdit");
         }
         #endregion

@@ -179,7 +179,7 @@ table.dataTable.table-sm .sorting_desc:after {
 }
 
 table.table-bordered.dataTable {
-  border-right-width: 120px;
+  border-right-width: 100px;
 }
 table.table-bordered.dataTable th,
 table.table-bordered.dataTable td {

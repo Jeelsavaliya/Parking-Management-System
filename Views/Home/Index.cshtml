@@ -2,6 +2,8 @@
     ViewData["Title"] = "Home Page";
 }
 
+@using ParkingSystem.BAL;
+
 <!-- partial -->
 <div class="main-panel">
     <div class="content-wrapper">
@@ -9,7 +11,9 @@
             <div class="col-md-12 grid-margin">
                 <div class="row">
                     <div class="col-12 col-xl-8 mb-4 mb-xl-0">
-                        <h3 class="font-weight-bold">Welcome Jeel</h3>
+                        <h3 class="font-weight-bold">
+                            Welcome  <span class="username username-hide-on-mobile">@CV.UserName()</span>
+                        </h3>
                     </div>
                 </div>
             </div>
