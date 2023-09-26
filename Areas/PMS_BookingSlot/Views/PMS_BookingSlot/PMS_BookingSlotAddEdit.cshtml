@@ -3,60 +3,62 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @model ParkingSystem.Areas.PMS_BookingSlot.Models.PMS_BookingSlotModel;
-<div class="row">
-    <div class="col-md-6">
-        <h3>BookingSlot Add List</h3>
-        <h3>@TempData["BookingSlotInsertMsg"]</h3>
-        <form method="post" asp-area="PMS_BookingSlot" asp-controller="PMS_BookingSlot" asp-action="Save" enctype="multipart/form-data">
-            @Html.HiddenFor(x=>x.SlotID)
-            <div class="form-group">
-                <label>Vehicle Category</label>
-                <select class="form-control" asp-for="VehicleCategoryID" asp-items="@(new SelectList(ViewBag.VehicleCategoryList,"VehicleCategoryID","VehicleCategory").ToList())" onchange="VehicleCategoryChange();">
-                    <option vlaue="">Select Category</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label>Vehicle Number</label>
-                <select class="form-control" asp-for="VehicleID" asp-items="@(new SelectList(ViewBag.VehicleList,"VehicleID","VehicleNumber").ToList())">
-                    <option vlaue="">Select Vehicle Number</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label>Building Name</label>
-                <select class="form-control" asp-for="SlotAreaID" asp-items="@(new SelectList(ViewBag.SlotAreaList,"SlotAreaID","BuildingName").ToList())">
-                    <option vlaue="">Select Building</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label>Status</label>
-                <input type="text" class="form-control" asp-for="Status" placeholder="Enter Status" />
-            </div>
-            <div class="form-group">
-                <label>Booking Date</label>
-                <input type="date" class="form-control" asp-for="BookingDate" placeholder="Enter Booking Date" />
-            </div>
-            <div class="form-group">
-                <label>Entry Time</label>
-                <input type="time" class="form-control" asp-for="EntryTime" placeholder="Enter Entry Time" />
-            </div>
-            <div class="form-group">
-                <label>Exit Time</label>
-                <input type="time" class="form-control" asp-for="ExitTime" placeholder="Enter Exit Time" />
-            </div>
-            <div class="form-group">
-                <label>Remark</label>
-                <input type="text" class="form-control" asp-for="Remark" placeholder="Enter Remark" />
-            </div>
-            <div class="form-group">
-                <label>Amount</label>
-                <input type="text" class="form-control" asp-for="Amount" placeholder="Enter Amount" />
-            </div>
-            <hr />
-            <div class="row">
-                <input type="submit" class="btn btn-success"  />
-                <a class="btn btn-danger" onclick="" asp-area="PMS_BookingSlot" asp-controller="PMS_BookingSlot" asp-action="Index">Cancel</a>
-            </div>
-        </form>
+<div class="col-lg-10 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h3>BookingSlot Add List</h3>
+            <h3>@TempData["BookingSlotInsertMsg"]</h3>
+            <form method="post" asp-area="PMS_BookingSlot" asp-controller="PMS_BookingSlot" asp-action="Save" enctype="multipart/form-data">
+                @Html.HiddenFor(x=>x.SlotID)
+                <div class="form-group">
+                    <label>Vehicle Category</label>
+                    <select class="form-control" asp-for="VehicleCategoryID" asp-items="@(new SelectList(ViewBag.VehicleCategoryList,"VehicleCategoryID","VehicleCategory").ToList())" onchange="VehicleCategoryChange();">
+                        <option vlaue="">Select Category</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Vehicle Number</label>
+                    <select class="form-control" asp-for="VehicleID" asp-items="@(new SelectList(ViewBag.VehicleList,"VehicleID","VehicleNumber").ToList())">
+                        <option vlaue="">Select Vehicle Number</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Building Name</label>
+                    <select class="form-control" asp-for="SlotAreaID" asp-items="@(new SelectList(ViewBag.SlotAreaList,"SlotAreaID","BuildingName").ToList())">
+                        <option vlaue="">Select Building</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Status</label>
+                    <input type="text" class="form-control" asp-for="Status" placeholder="Enter Status" />
+                </div>
+                <div class="form-group">
+                    <label>Booking Date</label>
+                    <input type="date" class="form-control" asp-for="BookingDate" placeholder="Enter Booking Date" />
+                </div>
+                <div class="form-group">
+                    <label>Entry Time</label>
+                    <input type="time" class="form-control" asp-for="EntryTime" placeholder="Enter Entry Time" />
+                </div>
+                <div class="form-group">
+                    <label>Exit Time</label>
+                    <input type="time" class="form-control" asp-for="ExitTime" placeholder="Enter Exit Time" />
+                </div>
+                <div class="form-group">
+                    <label>Remark</label>
+                    <input type="text" class="form-control" asp-for="Remark" placeholder="Enter Remark" />
+                </div>
+                <div class="form-group">
+                    <label>Amount</label>
+                    <input type="text" class="form-control" asp-for="Amount" placeholder="Enter Amount" />
+                </div>
+                <hr />
+                <div class="row">
+                    <input type="submit" class="btn btn-success"  />
+                    <a class="btn btn-danger" onclick="" asp-area="PMS_BookingSlot" asp-controller="PMS_BookingSlot" asp-action="Index" style="margin-left: 30px">Cancel</a>
+                </div>
+            </form>
+        </div>
     </div>
 </div>
 

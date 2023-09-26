@@ -28,65 +28,70 @@
 <hr />
 <br />*@
 
-<div class="row">
-    <div class="col-lg-7">
-        <h3>Vehicle List</h3>
-    </div>
-    <div id="sample_1_filter" class="dataTables_filter col-md-2">
-        <input type="text" placeholder="Search Vehicle" id="sample_1" />
-    </div>
-    <div class="col-lg-3">
-        <form method="post" asp-area="PMS_Vehicle" asp-controller="PMS_Vehicle" asp-action="Add">
-            <button class="btn btn-primary">Add Vehicle</button>
-        </form>
-    </div>
-</div>
-<hr />
-
-<div class="table-responsive">
-<table class="table" id="sample_1">
-    <thead>
-        <tr>
-            <th>Vehicle Category</th>
-            <th>Vehicle Company</th>
-            <th>Vehicle Model</th>
-            <th>Vehicle Number</th>
-            <th>Owner Name</th>
-            <th>Mobile Number</th>
-            <th>Creation Date</th>
-            <th>Modification Date</th>
-            <th>Edit</th>
-            <th>Delete</th>
-        </tr>
-    </thead>
-    <tbody id="sample_2">
-        @foreach (DataRow dr in Model.Rows)
-        {
-            <tr>
-                <td>@dr["VehicleCategory"]</td>
-                <td>@dr["VehicleCompany"]</td>
-                <td>@dr["VehicleModel"]</td>
-                <td>@dr["VehicleNumber"]</td>
-                <td>@dr["OwnerName"]</td>
-                <td>@dr["OwnerMobileNo"]</td>
-                <td>@Convert.ToDateTime(dr["CreationDate"]).ToString("dd-MM-yyyy")</td>
-                <td>@Convert.ToDateTime(dr["ModificationDate"]).ToString("dd-MM-yyyy")</td>
-                <td>
-                    <form method="post" asp-area="PMS_Vehicle" asp-controller="PMS_Vehicle" asp-action="Add" asp-route-VehicleID="@Convert.ToInt32(dr["VehicleID"])">
-                        <input type="hidden" name="VehicleID" value="@Convert.ToInt32(dr["VehicleID"]).ToString()" />
-                        <button type="submit" class="btn btn-success btn-sm" value="Edit">Edit<i class="bi bi-pencil-square"></i></button>
+<div class="col-lg-10 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-lg-7">
+                    <h3>Vehicle List</h3>
+                </div>
+                <div id="sample_1_filter" class="dataTables_filter col-md-2">
+                    <input type="text" placeholder="Search Vehicle" id="sample_1" />
+                </div>
+                <div class="col-lg-3">
+                    <form method="post" asp-area="PMS_Vehicle" asp-controller="PMS_Vehicle" asp-action="Add">
+                        <button class="btn btn-primary" style="margin-left: 50px">Add Vehicle</button>
                     </form>
-                </td>
-                <td>
-                    <form method="post" asp-area="PMS_Vehicle" asp-controller="PMS_Vehicle" asp-action="Delete">
-                        <input type="hidden" name="VehicleID" value="@Convert.ToInt32(dr["VehicleID"]).ToString()">
-                        <button type="submit" class="btn btn-danger btn-sm" value="Delete" onclick="return fun1()">Delete<i class="bi bi-trash"></i></button>
-                    </form>
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
+                </div>
+            </div>
+            <hr />
+            <div class="table-responsive">
+                <table class="table table-striped" id="sample_1">
+                    <thead>
+                        <tr>
+                            <th>Vehicle Category</th>
+                            <th>Vehicle Company</th>
+                            <th>Vehicle Model</th>
+                            <th>Vehicle Number</th>
+                            <th>Owner Name</th>
+                            <th>Mobile Number</th>
+                            <th>Creation Date</th>
+                            <th>Modification Date</th>
+                            <th>Edit</th>
+                            <th>Delete</th>
+                        </tr>
+                    <tbody>
+                    <tbody id="sample_2">
+                        @foreach (DataRow dr in Model.Rows)
+                        {
+                            <tr>
+                                <td>@dr["VehicleCategory"]</td>
+                                <td>@dr["VehicleCompany"]</td>
+                                <td>@dr["VehicleModel"]</td>
+                                <td>@dr["VehicleNumber"]</td>
+                                <td>@dr["OwnerName"]</td>
+                                <td>@dr["OwnerMobileNo"]</td>
+                                <td>@Convert.ToDateTime(dr["CreationDate"]).ToString("dd-MM-yyyy")</td>
+                                <td>@Convert.ToDateTime(dr["ModificationDate"]).ToString("dd-MM-yyyy")</td>
+                                <td>
+                                    <form method="post" asp-area="PMS_Vehicle" asp-controller="PMS_Vehicle" asp-action="Add" asp-route-VehicleID="@Convert.ToInt32(dr["VehicleID"])">
+                                        <input type="hidden" name="VehicleID" value="@Convert.ToInt32(dr["VehicleID"]).ToString()" />
+                                        <button type="submit" class="btn btn-success btn-sm" value="Edit">Edit<i class="bi bi-pencil-square"></i></button>
+                                    </form>
+                                </td>
+                                <td>
+                                    <form method="post" asp-area="PMS_Vehicle" asp-controller="PMS_Vehicle" asp-action="Delete">
+                                        <input type="hidden" name="VehicleID" value="@Convert.ToInt32(dr["VehicleID"]).ToString()">
+                                        <button type="submit" class="btn btn-danger btn-sm" value="Delete" onclick="return fun1()">Delete<i class="bi bi-trash"></i></button>
+                                    </form>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 </div>
 
 @section Scripts{

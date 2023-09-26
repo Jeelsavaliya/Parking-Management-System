@@ -9237,7 +9237,7 @@ pre code {
 .row {
   display: flex;
   flex-wrap: wrap;
-  margin-right: -100px;
+  margin-right: -15px;
   margin-left: -15px;
 }
 
@@ -9261,7 +9261,7 @@ pre code {
   position: relative;
   width: 100%;
   padding-right: 15px;
-  padding-left: 15px;
+  padding-left: 6px;
 }
 
 .col {
@@ -10471,7 +10471,7 @@ pre code {
 .table-responsive {
     width: 100%;
     overflow-x: auto;
-    margin-left: -30px;
+    margin-left: 0px;
     -webkit-overflow-scrolling: touch;
 }
 
@@ -21997,7 +21997,7 @@ code {
 }
 
 .card .card-body {
-  padding: 1.25rem 1.25rem;
+  padding: 2.25rem 2.0rem;
 }
 
 .card .card-body + .card-body {
@@ -28447,7 +28447,7 @@ div.tagsinput span.tag a {
 }
 
 @media (max-width: 991px) {
-  .main-panel {
+  .main-panel  {
     margin-left: 0;
     width: 100%;
   }

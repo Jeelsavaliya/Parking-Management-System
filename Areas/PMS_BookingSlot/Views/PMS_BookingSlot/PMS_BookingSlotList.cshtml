@@ -28,22 +28,87 @@
 <hr />
 <br />*@
 
-<div class="row">
-    <div class="col-lg-7">
-        <h3>BookingSlot List</h3>
-    </div>
-    <div id="sample_1_filter" class="dataTables_filter col-md-2">
-        <input type="text" placeholder="Search BookingSlot" id="sample_1" />
-    </div>
-    <div class="col-lg-3">
-        <form method="post" asp-area="PMS_BookingSlot" asp-controller="PMS_BookingSlot" asp-action="Add">
-            <button class="btn btn-primary">Add BookingSlot</button>
-        </form>
+
+<div class="col-lg-10 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-lg-7">
+                    <h3>BookingSlot List</h3>
+                </div>
+                <div id="sample_1_filter" class="dataTables_filter col-md-2">
+                    <input type="text" placeholder="Search BookingSlot" id="sample_1" />
+                </div>
+                <div class="col-lg-3">
+                    <form method="post" asp-area="PMS_BookingSlot" asp-controller="PMS_BookingSlot" asp-action="Add">
+                        <button class="btn btn-primary" style="margin-left: 50px">Add BookingSlot</button>
+                    </form>
+                </div>
+            </div>
+            <hr />
+            <div class="table-responsive">
+                <table class="table table-striped" id="sample_1">
+                    <thead>
+                        <tr>
+                            <th>Vehicle Category</th>
+                            <th>Vehicle Number</th>
+                            <th>Building Name</th>
+                            <th>Status</th>
+                            <th>Booking Date</th>
+                            <th>Entry Time</th>
+                            <th>Exit Time</th>
+                            <th>Remark</th>
+                            <th>Amount</th>
+                            <th>Creation Date</th>
+                            <th>Modification Date</th>
+                            <th>Edit</th>
+                            <th>Delete</th>
+                        </tr>
+                    <tbody>
+                    <tbody id="sample_2">
+                        @foreach (DataRow dr in Model.Rows)
+                        {
+                            <tr>
+                                <!-- <td class="py-1">
+                                  <img src="../../images/faces/face1.jpg" alt="image"/>
+                                </td> -->
+                                <td>@dr["VehicleCategory"]</td>
+                                <td>@dr["VehicleNumber"]</td>
+                                <td>@dr["BuildingName"]</td>
+                                <td>@dr["Status"]</td>
+                                <td>@dr["BookingDate"]</td>
+                                <td>@dr["EntryTime"]</td>
+                                <td>@dr["ExitTime"]</td>
+                                <td>@dr["Remark"]</td>
+                                <td>@dr["Amount"]</td>
+                                <td>@Convert.ToDateTime(dr["CreationDate"]).ToString("dd-MM-yyyy")</td>
+                                <td>@Convert.ToDateTime(dr["ModificationDate"]).ToString("dd-MM-yyyy")</td>
+                                <td>
+                                    <form method="post" asp-area="PMS_BookingSlot" asp-controller="PMS_BookingSlot" asp-action="Add" asp-route-BookingSlotID="@Convert.ToInt32(dr["SlotID"])">
+                                        <input type="hidden" name="SlotID" value="@Convert.ToInt32(dr["SlotID"]).ToString()" />
+                                        <button type="submit" class="btn btn-success btn-sm" value="Edit">Edit<i class="bi bi-pencil-square"></i></button>
+                                    </form>
+                                </td>
+                                <td>
+                                    <form method="post" asp-area="PMS_BookingSlot" asp-controller="PMS_BookingSlot" asp-action="Delete">
+                                        <input type="hidden" name="BookingSlotID" value="@Convert.ToInt32(dr["SlotID"]).ToString()">
+                                        <button type="submit" class="btn btn-danger btn-sm" value="Delete" onclick="return fun1()">Delete<i class="bi bi-trash"></i></button>
+                                    </form>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 </div>
-<hr />
-<div class="table-responsive">
-<table class="table id="sample_1">
+
+
+
+
+@*<div class="table-responsive">
+<table class="table" id="sample_1">
     <thead>
         <tr>
             <th>Vehicle Category</th>
@@ -92,7 +157,7 @@
         }
     </tbody>
 </table>
-</div>
+</div>*@
 
 @section Scripts{
     <script>
